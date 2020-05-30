@@ -13,7 +13,7 @@ angular.module('myFirstApp', [])
    {
      return "Please enter data first";
    }
-  else if(res>0&&res<3)
+  else if(res>0&&res<=3)
   {
     return "Enjoy!";
   }
