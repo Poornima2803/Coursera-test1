@@ -8,23 +8,21 @@ angular.module('myFirstApp', [])
   $scope.str="";
   $scope.calculateitem = function() {
   var res=0;
-  res=checkLunch($scope.itemname);
+   res=checkLunch($scope.itemname);
    if($scope.itemname=='')
    {
-     return "Please enter data first";
+     $scope.result="Please enter data first";
    }
   else if(res>0&&res<=3)
   {
-    return "Enjoy!";
+     $scope.result="Enjoy!";
   }
   else if(res>3) {
-    return "Too much!";
+     $scope.result="Too much!";
   }
 
   };
   function checkLunch(string){
-    $scope.result="words";
-
     var words=[];
     words=string.split(',');
     var l=words.length;
