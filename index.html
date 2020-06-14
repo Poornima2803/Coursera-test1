@@ -1,81 +1,33 @@
 <!DOCTYPE html>
-<htmL lang="en" ng-app="ShoppingListCheckOff">
-  <head>
-    <title>Shopping List Check Off</title>
+<html ng-app="NarrowItDownApp" class="ng-scope" lang="en">
+<head><style type="text/css"></style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="bootstrap.min.css">
-      <style>
-        .emptyMessage {
-          font-weight: bold;
-          color: red;
-          font-size: 1.2em;
-        }
-        li {
-          margin-bottom: 7px;
-          font-size: 1.2em;
-        }
-        li > button {
-          margin-left: 6px;
-        }
-        button > span {
-          color: green;
-        }
-
-    </style>
-    <script src="angular.min.js"> </script>
-    <script src="app.js"> </script>
-  </head>
-<body class="ng-scope" >
-
-<div class="container">
-
-  <h1>Shopping List Check Off</h1>
-
-  <div class="row">
-
-    <!-- To Buy List -->
-    <div class="col-md-6 ng-scope" ng-controller="ToBuyController as buy">
-      <h2>To Buy:</h2>
-      <ul>
-        <!-- ngRepeat: item in buy.toBuy -->
-        <li ng-repeat="item in buy.toBuy" class="ng-binding ng-scope">Buy 2 Milk
-          <button ng-click="buy.transfer($index);">
-            <span class="glyphicon glyphicon-ok"></span> Bought
-          </button>
-        </li><!-- end ngRepeat: item in buy.toBuy --><li ng-repeat="item in buy.toBuy" class="ng-binding ng-scope">Buy 200 Donuts
-          <button ng-click="buy.transfer($index);">
-            <span class="glyphicon glyphicon-ok"></span> Bought
-          </button>
-        </li><!-- end ngRepeat: item in buy.toBuy --><li ng-repeat="item in buy.toBuy">Buy 300 Cookies
-          <button  ng-click="buy.transfer($index);">
-            <span class="glyphicon glyphicon-ok"></span> Bought
-          </button>
-        </li><!-- end ngRepeat: item in buy.toBuy --><li ng-repeat="item in buy.toBuy" class="ng-binding ng-scope">Buy 5 Chocolate
-          <button ng-click="buy.transfer($index);">
-            <span class="glyphicon glyphicon-ok"></span> Bought
-          </button>
-        </li><!-- end ngRepeat: item in buy.toBuy --><li ng-repeat="item in buy.toBuy" class="ng-binding ng-scope">Buy 7 Ice-cream
-          <button  ng-click="buy.transfer($index);">
-            <span class="glyphicon glyphicon-ok"></span> Bought
-          </button>
-        </li><!-- end ngRepeat: item in buy.toBuy -->
-      </ul>
-      <!-- ngIf: buy.toBuy.length==0 -->
-      <div class="emptyMessage ng-scope" ng-if="buy.toBuy.length==0">Everything had bought!.</div>
+</head>
+<body>
+    <div class="container ng-scope" ng-controller="NarrowItDownController as menu">
+        <h1>Narrow Down Your Chinese Menu Choice</h1>
+        <div class="search">
+            <input type="text" placeholder="search term" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="menu.shortName">
+            <div class="narrow-button">
+                <button class="btn btn-primary" ng-click="menu.matchedMenuItems(menu.shortName)">Narrow It Down For Me!</button>
+            </div>
+        </div>
+        <found-items found-items="menu.found" on-remove="menu.removeMenuItem(index)" on-empty="menu.message" class="ng-isolate-scope"><div class="row">
+    <!-- ngRepeat: item in menu.foundItems -->
+</div>
+<div class="alert alert-danger ng-binding ng-hide" role="alert" ng-show="menu.onEmpty"></div>
+</found-items>
     </div>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
 
-    <!-- Already Bought List -->
-    <div class="col-md-6 ng-scope" ng-controller="AlreadyBoughtController as boughtt">
-      <h2>Already Bought:</h2>
-      <ul>
-          <li ng-repeat="item in boughtt.bought" > {{item.name}} of {{item.quantity}}</li>
-      </ul>
-      <!-- ngIf: boughtt.bought.length==0 --><div class="emptyMessage ng-scope" ng-if="boughtt.bought.length==0">Nothing bought yet.</div><!-- end ngIf: boughtt.bought.length==0 -->
-    </div>
-    </div>
-  </div>
-
-
-</body>
-</html>
+</body></html>
